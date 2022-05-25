@@ -6,6 +6,7 @@ use App\Http\Requests\NhanSuRequest;
 use App\Http\Requests\NhanSuUpdateRequest;
 use App\Http\Resources\NhanSuResource;
 use App\Models\NhanSu;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -42,11 +43,22 @@ class NhanSuController extends Controller
     public function store(NhanSuRequest $request)
     {
         $data = $request->all();
+
+        $user_id = $request->user_id;
+        
+        $user= User::find($user_id);
+        
+        if(isset($user)){
         $NhanSu = $this->NhanSu->create($data);
 
         $NhanSuResource= new NhanSuResource($NhanSu);
 
         return  response()->json(['data'=> $NhanSuResource],Response::HTTP_OK);
+        }
+        else 
+        {
+            return  response()->json(['data'=> 'Khong ton tai user'],Response::HTTP_NOT_FOUND);
+        }
     }
 
     /**
@@ -86,10 +98,19 @@ class NhanSuController extends Controller
         $data = $request->all();
         $NhanSu = $this->NhanSu->findorfail($id);
 
+        $user_id = $request->user_id;
+        
+        $user= User::find($user_id);
+        if(isset($user)){
         $NhanSu->update($data);
         $NhanSuResource= new NhanSuResource($NhanSu);
 
-        return  response()->json(['data'=> $NhanSuResource],Response::HTTP_OK);
+        return  response()->json(['data'=> $NhanSuResource],Response::HTTP_OK);}
+
+        else 
+        {
+            return  response()->json(['data'=> 'Khong ton tai user'],Response::HTTP_NOT_FOUND);
+        }
     }
 
     /**
