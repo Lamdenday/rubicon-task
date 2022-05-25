@@ -4,9 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-
-window.Vue = require('vue').default;
+ require('./bootstrap');
+ window.Vue = require('vue');
+ Vue.component('user-component', require('./components/UserComponent.vue').default);
+ 
 
 /**
  * The following block of code may be used to automatically register your

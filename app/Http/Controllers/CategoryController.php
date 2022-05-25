@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
@@ -12,9 +14,17 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(Category $category){
+        $this->Category = $category;
+    }
+
     public function index()
     {
-        //
+        $category = $this->Category->all();
+
+        $categoryResource = CategoryResource::collection($category);
+
+        return Response()->json(['data' => $categoryResource],Response::HTTP_OK);
     }
 
     /**
@@ -24,7 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +45,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

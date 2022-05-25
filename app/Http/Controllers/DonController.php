@@ -14,7 +14,7 @@ class DonController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
