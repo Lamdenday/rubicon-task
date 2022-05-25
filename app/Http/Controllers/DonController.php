@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DonResource;
 use App\Models\Don;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DonController extends Controller
 {
@@ -12,9 +14,17 @@ class DonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(Don $don){
+        $this->Don = $don;
+    }
+
     public function index()
     {
-        
+        $data = $this->Don->all();
+
+        $donResource = DonResource::collection($data);
+
+        return Response()->json(['data' => $donResource],Response::HTTP_OK);
     }
 
     /**
@@ -35,7 +45,12 @@ class DonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $don = $this->Don->create($data);
+
+        $donResource= new DonResource($don);
+
+        return  response()->json(['data'=> $donResource],Response::HTTP_OK);
     }
 
     /**

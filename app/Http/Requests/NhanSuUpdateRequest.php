@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Rules\PhoneNumber;
 class NhanSuUpdateRequest extends FormRequest
 {
     /**
@@ -24,7 +24,10 @@ class NhanSuUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id'=>'required',
+            'number'=>['required', new PhoneNumber],
+            'level'=>'required',
+            'status'=>'required'
         ];
     }
 }

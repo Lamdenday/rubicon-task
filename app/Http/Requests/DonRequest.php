@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\PhoneNumber;
 
-class NhanSuRequest extends FormRequest
+class DonRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +21,10 @@ class NhanSuRequest extends FormRequest
      *
      * @return array
      */
-
     public function rules()
     {
         return [
-        'user_id'=>'required',
-        'number'=>['required', new PhoneNumber],
-        'level'=>'required',
-        'status'=>'required'
+            
         ];
     }
 }
