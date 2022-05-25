@@ -11,7 +11,7 @@ class NhanSu extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
+        'user_id',
         'number',
         'image',
         'DOB',

@@ -20,6 +20,9 @@ class NhanSuResource extends JsonResource
             'name'=> User::find($this->user_id)->name,
             'Email'=>User::find($this->user_id)->email,
             'level'=>$this->level,
+            'DOB' =>$this->DOB,
+            'Image' =>$this->image,
+            'status' =>$this->status,
         ];
     }
 }
