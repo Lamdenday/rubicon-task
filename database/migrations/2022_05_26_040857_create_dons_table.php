@@ -20,7 +20,7 @@ class CreateDonsTable extends Migration
             $table->text('content');
             $table->date('date_of_writing');
             $table->float('days_off');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
