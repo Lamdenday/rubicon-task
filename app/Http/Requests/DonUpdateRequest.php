@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DonRequest extends FormRequest
+class DonUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,6 @@ class DonRequest extends FormRequest
         return [
             'user_id'=>'required',
             'category_id'=>'required',
-            'content'=>'required',
-            'date_of_writing'=>'required',
-            'days_off'=>'required',
         ];
     }
 }
